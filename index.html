@@ -702,12 +702,8 @@ messageForm.addEventListener('submit', async function(e) {
     const message = document.getElementById('message').value;
     
 
-const ENCODED_BOT_TOKEN = 'Nzc5MzkyNzU4OTpBQUhVSVN2TVFMd3A1dDdzQTNUVzI4ejhlNzFqZTBOXmgfbw==';
-const ENCODED_CHAT_ID = 'NjgxOTE5MjUzOQ==';
-
-
-const BOT_TOKEN = atob(ENCODED_BOT_TOKEN).replace('_', '');
-const CHAT_ID = atob(ENCODED_CHAT_ID);
+    const botToken = '7793927589:AAHUISvMQLwp5t7sA3TW28z8e71je0NZh_o';
+    const chatId = '6819192539';
     
  
     if(!name || !message) {
