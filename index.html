@@ -60,6 +60,7 @@
             height: 100%;
             overflow: hidden;
             z-index: -1;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .floating-icon {
@@ -214,6 +215,232 @@
             transform: scale(1.1);
         }
 
+        /* Chat Button */
+        .chat-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .chat-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .contact-form.active {
+            display: block;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .contact-form.closing {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translate(-50%, -40%);
+            }
+            to { 
+                opacity: 1; 
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes fadeOut {
+            from { 
+                opacity: 1; 
+                transform: translate(-50%, -50%);
+            }
+            to { 
+                opacity: 0; 
+                transform: translate(-50%, -40%);
+                display: none;
+            }
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent-color);
+            color: white;
+            font-family: inherit;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+            animation: fadeInOverlay 0.3s ease;
+        }
+
+        .overlay.closing {
+            animation: fadeOutOverlay 0.3s ease forwards;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOutOverlay {
+            from { opacity: 1; }
+            to { opacity: 0; display: none; }
+        }
+
+        /* Notification - Fixed */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease-out;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 300px;
+            pointer-events: none;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification i {
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .notification.success {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .notification.error {
+            border-left: 4px solid #F44336;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .glass-panel {
@@ -232,6 +459,13 @@
             .social-link {
                 font-size: 2rem;
             }
+            
+            .notification {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                max-width: calc(100% - 40px);
+            }
         }
 
         /* Unselectable text */
@@ -249,13 +483,16 @@
     <!-- Floating Icons Background -->
     <div class="floating-icons" id="floatingIcons"></div>
     
-    <!-- Music controls -->
+    <!-- Controls -->
     <div class="music-controls">
         <button class="music-btn" id="playBtn" title="Play/Pause">
             <i class="fas fa-play"></i>
         </button>
         <button class="music-btn" id="volumeBtn" title="Toggle Volume">
             <i class="fas fa-volume-up"></i>
+        </button>
+        <button class="chat-btn" id="chatBtn" title="Send Message">
+            <i class="fas fa-envelope"></i>
         </button>
     </div>
 
@@ -287,8 +524,38 @@
         </div>
     </div>
 
+    <!-- Contact Form -->
+    <div class="overlay" id="overlay"></div>
+    <div class="contact-form" id="contactForm">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="form-title">Contact Me</h2>
+        <form id="messageForm">
+            <div class="form-group">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" id="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email (Optional)</label>
+                <input type="email" id="email" class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea id="message" class="form-input form-textarea" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Notification - Fixed -->
+    <div class="notification" id="notification" style="display: none;">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Message sent successfully!</span>
+    </div>
+
     <div class="footer">
-        icubaby.github.io/lastgame &copy; 2024 - Made with love by lastgame
+        icubaby.github.io/lastgame &copy; 2024 - Made with by lastgame
     </div>
 
     <!-- Audio element -->
@@ -372,11 +639,108 @@
                 }
                 isMuted = !isMuted;
             });
+            
+            // Contact form handling
+            const chatBtn = document.getElementById('chatBtn');
+            const contactForm = document.getElementById('contactForm');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('closeBtn');
+            const messageForm = document.getElementById('messageForm');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            // Show contact form
+            chatBtn.addEventListener('click', function() {
+                contactForm.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            // Hide contact form with animation
+            function closeForm() {
+                contactForm.classList.add('closing');
+                overlay.classList.add('closing');
+                
+                setTimeout(() => {
+                    contactForm.classList.remove('active', 'closing');
+                    overlay.classList.remove('active', 'closing');
+                }, 300);
+            }
+            
+            closeBtn.addEventListener('click', closeForm);
+            overlay.addEventListener('click', closeForm);
+            
+            // Show notification - Fixed function
+            function showNotification(message, isSuccess) {
+                // Reset notification state
+                notification.style.display = 'flex';
+                notification.className = 'notification';
+                notification.classList.add(isSuccess ? 'success' : 'error');
+                
+                // Update content
+                notificationText.textContent = message;
+                const icon = notification.querySelector('i');
+                icon.className = isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+                
+                // Trigger show animation
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+                
+                // Auto-hide after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 400);
+                }, 3000);
+            }
+            
+            // Form submission to Telegram bot
+            messageForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value || 'Not provided';
+                const message = document.getElementById('message').value;
+                
+                // Replace with your Telegram bot token and chat ID
+                const botToken = '7793927589:AAHUISvMQLwp5t7sA3TW28z8e71je0NZh_o';
+                const chatId = '6819192539';
+                
+                const text = `📩 New message from ${name} (${email}):\n\n${message}`;
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: text,
+                            parse_mode: 'HTML'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.ok) {
+                        showNotification('Message sent successfully!', true);
+                        messageForm.reset();
+                        closeForm();
+                    } else {
+                        showNotification('Failed to send message. Please try again.', false);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('Error sending message. Please try again.', false);
+                }
+            });
         });
 
         // Disable right click
         document.oncontextmenu = new Function("return false");
     </script>
 </body>
-
 </html>
