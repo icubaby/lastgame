@@ -695,48 +695,60 @@
                 }, 3000);
             }
             
-            // Form submission to Telegram bot
-            messageForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value || 'Not provided';
-                const message = document.getElementById('message').value;
-                
-                // Replace with your Telegram bot token and chat ID
-                const botToken = '7793927589:AAHUISvMQLwp5t7sA3TW28z8e71je0NZh_o';
-                const chatId = '6819192539';
-                
-                const text = `📩 New message from ${name} (${email}):\n\n${message}`;
-                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-                
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: text,
-                            parse_mode: 'HTML'
-                        })
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.ok) {
-                        showNotification('Message sent successfully!', true);
-                        messageForm.reset();
-                        closeForm();
-                    } else {
-                        showNotification('Failed to send message. Please try again.', false);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    showNotification('Error sending message. Please try again.', false);
-                }
-            });
+// در قسمت ارسال فرم، کد زیر را جایگزین کنید:
+messageForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value || 'Not provided';
+    const message = document.getElementById('message').value;
+    
+    // اطلاعات ربات تلگرام
+    const botToken = '7793927589:AAHUISvMQLwp5t7sA3TW28z8e71je0NZh_o';
+    const chatId = '6819192539';
+    
+    // اعتبارسنجی اولیه
+    if(!name || !message) {
+        showNotification('Please fill all required fields', false);
+        return;
+    }
+
+    showNotification('Sending message...', true);
+    
+    const text = `📩 New message from ${name} (${email}):\n\n${message}`;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: text,
+                parse_mode: 'HTML'
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+            showNotification('Message sent successfully!', true);
+            messageForm.reset();
+            closeForm();
+        } else {
+            let errorMsg = 'Failed to send message';
+            if(data.description) {
+                errorMsg += `: ${data.description}`;
+            }
+            showNotification(errorMsg, false);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Connection error. Please try again later.', false);
+    }
+});
         });
 
         // Disable right click
