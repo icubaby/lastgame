@@ -662,9 +662,8 @@
                 const message = document.getElementById('message').value;
                 
 
-                const encodedToken = 'Nzc5MzkyNzU4OTpBQUhVSVN2TVFMd3A1dDdzQTNUVzI4ejhlNzFqZTBOWmhfbw==';
-                const botToken = atob(encodedToken);
-                const chatId = '6819192539';
+                const botToken = process.env.TELEGRAM_BOT_TOKEN;
+                const chatId = process.env.TELEGRAM_CHAT_ID;
                 
                 if(!name || !message) {
                     showNotification('Please fill all required fields', false);
