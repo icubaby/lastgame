@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> lastgameorg </title>
+    <title>lastgameorg</title>
     <meta name="description" content="Welcome to the creative world of lastgame - Music, Art and Digital Experiences">
     <meta name="author" content="lastgame">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./image/1png.png">
 
-    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/48/08/4d/48084d6db5e22db8d38e8f164edd2b4d.jpg">
-
-
+    <!-- Fonts & Icons -->
     <link href='https://fonts.googleapis.com/css?family=Lalezar' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/af375720bd.js" crossorigin="anonymous" defer></script>
     
-
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -88,7 +88,7 @@
             }
         }
 
-
+        /* Main content container */
         .container {
             display: flex;
             flex-direction: column;
@@ -99,7 +99,7 @@
             text-align: center;
         }
 
-
+        /* Glass panel effect */
         .glass-panel {
             background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(10px);
@@ -117,7 +117,7 @@
             transform: translateY(-5px);
         }
 
-
+        /* Title styling */
         .title {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -138,7 +138,7 @@
             box-shadow: 0 0 10px var(--text-color);
         }
 
-
+        /* Social links */
         .social-links {
             display: flex;
             justify-content: center;
@@ -176,7 +176,7 @@
             opacity: 1;
         }
 
-
+        /* Footer */
         .footer {
             position: absolute;
             bottom: 20px;
@@ -186,7 +186,7 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-
+        /* Music controls */
         .music-controls {
             position: absolute;
             top: 20px;
@@ -215,7 +215,7 @@
             transform: scale(1.1);
         }
 
-
+        /* Chat Button */
         .chat-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -236,7 +236,7 @@
             transform: scale(1.1);
         }
 
-
+        /* Contact Form */
         .contact-form {
             display: none;
             position: fixed;
@@ -367,7 +367,7 @@
             transform: rotate(90deg);
         }
 
-
+        /* Overlay */
         .overlay {
             display: none;
             position: fixed;
@@ -441,7 +441,7 @@
             border-left: 4px solid #F44336;
         }
 
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .glass-panel {
                 padding: 30px 20px;
@@ -468,7 +468,7 @@
             }
         }
 
-
+        /* Unselectable text */
         .unselectable {
             -webkit-user-select: none;
             -webkit-touch-callout: none;
@@ -480,10 +480,10 @@
 </head>
 
 <body class="unselectable">
-
+    <!-- Floating Icons Background -->
     <div class="floating-icons" id="floatingIcons"></div>
     
-
+    <!-- Controls -->
     <div class="music-controls">
         <button class="music-btn" id="playBtn" title="Play/Pause">
             <i class="fas fa-play"></i>
@@ -496,7 +496,7 @@
         </button>
     </div>
 
-
+    <!-- Main content -->
     <div class="container">
         <div class="glass-panel">
             <h1 class="title">lastgame</h1>
@@ -524,7 +524,7 @@
         </div>
     </div>
 
-
+    <!-- Contact Form -->
     <div class="overlay" id="overlay"></div>
     <div class="contact-form" id="contactForm">
         <button class="close-btn" id="closeBtn">
@@ -548,7 +548,7 @@
         </form>
     </div>
 
-
+    <!-- Notification - Fixed -->
     <div class="notification" id="notification" style="display: none;">
         <i class="fas fa-check-circle"></i>
         <span id="notificationText">Message sent successfully!</span>
@@ -558,12 +558,12 @@
         icubaby.github.io/lastgame &copy; 2024 - Made with by lastgame
     </div>
 
-
+    <!-- Audio element -->
     <audio id="backgroundMusic" src="./mp3/mp3.mp3" loop></audio>
 
-
+    <!-- Scripts -->
     <script>
-
+        // Create floating icons
         document.addEventListener('DOMContentLoaded', function() {
             const iconsContainer = document.getElementById('floatingIcons');
             const icons = [
@@ -574,7 +574,7 @@
                 'fab fa-discord'
             ];
             
-
+            // Create 20 floating icons
             for (let i = 0; i < 20; i++) {
                 const icon = document.createElement('i');
                 const randomIcon = icons[Math.floor(Math.random() * icons.length)];
@@ -602,7 +602,7 @@
             let isPlaying = false;
             let isMuted = false;
             
-
+            // Try to autoplay (may be blocked by browser)
             audio.volume = 0.5;
             const playPromise = audio.play();
             
@@ -616,7 +616,7 @@
                 });
             }
             
-
+            // Play/Pause button
             playBtn.addEventListener('click', function() {
                 if (isPlaying) {
                     audio.pause();
@@ -628,7 +628,7 @@
                 isPlaying = !isPlaying;
             });
             
-
+            // Volume button
             volumeBtn.addEventListener('click', function() {
                 if (isMuted) {
                     audio.volume = 0.5;
@@ -640,7 +640,7 @@
                 isMuted = !isMuted;
             });
             
-
+            // Contact form handling
             const chatBtn = document.getElementById('chatBtn');
             const contactForm = document.getElementById('contactForm');
             const overlay = document.getElementById('overlay');
@@ -649,13 +649,13 @@
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
             
-
+            // Show contact form
             chatBtn.addEventListener('click', function() {
                 contactForm.classList.add('active');
                 overlay.classList.add('active');
             });
             
-
+            // Hide contact form with animation
             function closeForm() {
                 contactForm.classList.add('closing');
                 overlay.classList.add('closing');
@@ -669,24 +669,24 @@
             closeBtn.addEventListener('click', closeForm);
             overlay.addEventListener('click', closeForm);
             
-
+            // Show notification - Fixed function
             function showNotification(message, isSuccess) {
-
+                // Reset notification state
                 notification.style.display = 'flex';
                 notification.className = 'notification';
                 notification.classList.add(isSuccess ? 'success' : 'error');
                 
-
+                // Update content
                 notificationText.textContent = message;
                 const icon = notification.querySelector('i');
                 icon.className = isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
                 
-
+                // Trigger show animation
                 setTimeout(() => {
                     notification.classList.add('show');
                 }, 10);
                 
-
+                // Auto-hide after 3 seconds
                 setTimeout(() => {
                     notification.classList.remove('show');
                     setTimeout(() => {
@@ -695,7 +695,7 @@
                 }, 3000);
             }
             
-
+// در قسمت ارسال فرم، کد زیر را جایگزین کنید:
 messageForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -703,11 +703,11 @@ messageForm.addEventListener('submit', async function(e) {
     const email = document.getElementById('email').value || 'Not provided';
     const message = document.getElementById('message').value;
     
-
+    // اطلاعات ربات تلگرام
     const botToken = '7793927589:AAHUISvMQLwp5t7sA3TW28z8e71je0NZh_o';
     const chatId = '6819192539';
     
-
+    // اعتبارسنجی اولیه
     if(!name || !message) {
         showNotification('Please fill all required fields', false);
         return;
@@ -715,7 +715,7 @@ messageForm.addEventListener('submit', async function(e) {
 
     showNotification('Sending message...', true);
     
-    const text = `📩 New message from  ${name} (${email}):\n\n${message}`;
+    const text = `📩 New message from ${name} (${email}):\n\n${message}`;
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
     
     try {
@@ -751,7 +751,7 @@ messageForm.addEventListener('submit', async function(e) {
 });
         });
 
-\
+        // Disable right click
         document.oncontextmenu = new Function("return false");
     </script>
 </body>
